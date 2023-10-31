@@ -7,10 +7,21 @@
 <body>
     <div id="index">
 <!--        <h1><a href="/visitor/list/">Parking Site</a></h1>-->
-        <h1>Parking Site</h1>
-        <a href="/membership/login/">로그인</a>
-        <a href="/visitor/list/">비회원</a>
-        <button type="submit"><a href="/membership/signup/">회원가입</a></button>
+        <h1>Parking Site</h1><br>
+        {% if user.is_authenticated %}
+        <button type="button" class="btn btn-primary">
+        <a href="/visitor/list/">Board</a></button>
+        <br>
+        <button type="submit" class="btn btn-primary">
+        <a href="/posts/feeds/">LogOut</a></button><br>
+
+        {% else %}
+        <button type="button" class="btn btn-primary">
+        <a href="/membership/login/">LogIn</a></button>
+        <br>
+        <button type="submit" class="btn btn-primary">
+        <a href="/membership/signup/">SignUp</a></button><br>
+        {% endif %}
     </div>
 </body>
 </html>

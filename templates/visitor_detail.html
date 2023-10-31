@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="{% static 'css/pylog_style.css' %}">
+    <title>Detail</title>
+</head>
+<body>
+    <div id="navbar">
+        <h1>Visitor Detail</h1>
+    </div>
+    <div id="post-detail">
+        <h2><a href="/visitor/list/">Parking Site</a></h2><br>
+        <h1>{{ carNumber }}</h1>
+        <ul>
+            <li>
+               id:  {{ id }}
+            </li>
+            <li>
+                이름: {{ name }}
+            </li>
+            <li>
+                주소: {{ address }}
+            </li>
+            <li>
+                핸드폰 번호: {{ phoneNumber }}
+            </li>
+            <li>
+                입차 일시: {{ carIn }}
+            </li>
+        </ul>
+        <form method="GET" action="/visitor/exit/{{id}}">
+            <button type="submit" class="btn btn-primary">출차 등록</button>
+        </form>
+    </div>
+</body>
+</html>

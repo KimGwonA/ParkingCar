@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="{% static 'css/pylog_style.css' %}">
+</head>
+<body>
+    <div id="index">
+<!--        <h1><a href="/visitor/list/">Parking Site</a></h1>-->
+        <h1>Parking Site</h1>
+        <a href="/membership/login/">로그인</a>
+        <a href="/visitor/list/">비회원</a>
+        <button type="submit"><a href="/membership/signup/">회원가입</a></button>
+    </div>
+</body>
+</html>

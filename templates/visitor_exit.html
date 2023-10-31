@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="{% static 'css/pylog_style.css' %}">
+    <title>Exit</title>
+</head>
+<body>
+    <div id="navbar">
+        <h1>Visitor Exit</h1>
+    </div>
+    <div id="post-detail">
+        <h2><a href="/visitor/list/">Parking Site</a></h2>
+        <h1>{{ carNumber }}</h1>
+        <ul>
+            <li>
+                id: {{ id }}
+            </li>
+            {% for exit_list in exit %}
+            <li>
+                출차 일시 : {{ exit_list }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

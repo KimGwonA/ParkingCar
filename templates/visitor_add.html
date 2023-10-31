@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="{% static 'css/pylog_style.css' %}">
+    <title>Visitor Add</title>
+</head>
+<body>
+    <div id="navbar">
+        <h1>방문자 등록</h1>
+
+    </div>
+    <div id="post-add">
+        <h2><a href="/visitor/list/">Parking Site</a></h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <label>차 번호</label>
+                <input name="carNumber" type="text">
+            </div>
+            <div>
+                <label>이름</label>
+                <input name="name" type="text">
+            </div>
+            <div>
+                <label>주소</label>
+                <input name="address" type="text">
+            </div>
+            <div>
+                <label>핸드폰 번호</label>
+                <input name="phoneNumber" type="text">
+            </div>
+<!--            <div>-->
+<!--                <label>입차 일시</label>-->
+<!--                <input name="carIn" type="text">-->
+<!--            </div>-->
+            <button type="submit" class="btn btn-primary">등록</button>
+        </form>
+    </div>
+</body>
+</html>

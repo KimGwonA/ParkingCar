@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="{% static 'css/pylog_style.css' %}">
+    <title>Visitor Search</title>
+</head>
+<body>
+    <div id="navbar">
+        <h1>Visitor Search</h1>
+        <h3><a href="/visitor/list/">Parking Site</a></h3>
+    </div>
+<!--    <div>-->
+<!--        <form method="GET">-->
+<!--            <input type="text" name="keyword">-->
+<!--            <button type="submit">검색</button>-->
+<!--        </form>-->
+<!--    </div>-->
+    <div id="post-detail">
+        <h2>검색결과</h2>
+        {% for visitor in visitors %}
+            <div>
+                {{ visitor.carNumber }}
+                (이름: {{ visitor.name }},
+                주소: {{ visitor.address }},
+                핸드폰 번호: {{ visitor.phoneNumber }}
+                입차 일시: {{ visitor.carIn }})
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

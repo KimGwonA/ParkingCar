@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="{% static 'css/pylog_style.css' %}">
+    <meta charset="UTF-8">
+    <title>NavBar</title>
+      <style>
+        .new-btn {
+          width: 66px;
+          height: 30px;
+          line-height: 25px;
+          background-color: #fff;
+          border-radius: 15px;
+          transition-duration: 0.3s;
+          transition-timing-function: ease;
+          font-size: 12px;
+          cursor: pointer;
+          text-align: center;}
+
+       .new-primary {
+          border: 1px solid #00c3bd;
+          color: #00c3bd;}
+
+      .new-primary:hover {
+        color: white;
+        background-color: #00c3bd;}
+
+      .font-style {
+        font-family: "Noto Sans KR", serif;}
+
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <h1>Visitor List</h1>
+        <form class="form-inline my-2 my-lg-0">
+            {% if user.is_authenticated %}
+    <!--        <a href="/visitor/add/" class="btn btn-primary">방문자 등록</a>-->
+            <button type="button" class="new-btn new-primary font-style">
+            <a href="/visitor/add/">등록</a></button>
+
+            <button type="button" class="new-btn new-primary font-style">
+            <a href="/posts/feeds/">LogOut</a></button>
+
+            {% else %}
+            <button type="button" class="new-btn new-primary font-style">
+            <a href="/membership/login/">LogIn</a></button>
+
+            <button type="button" class="new-btn new-primary font-style">
+            <a href="/membership/signup/">SignUp</a></button>
+            {% endif %}
+        </form>
+    </div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

@@ -1,68 +1,26 @@
-{% load static %}
+{% extends "navbar.html" %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <link rel="stylesheet" href="{% static 'css/pylog_style.css' %}">
+
     <title>Visitor-list</title>
-    <style>
-        .new-btn {
-          width: 66px;
-          height: 30px;
-          line-height: 25px;
-          background-color: #fff;
-          border-radius: 15px;
-          transition-duration: 0.3s;
-          transition-timing-function: ease;
-          font-size: 12px;
-          cursor: pointer;
-          text-align: center;}
-
-       .new-primary {
-          border: 1px solid #00c3bd;
-          color: #00c3bd;}
-
-      .new-primary:hover {
-        color: white;
-        background-color: #00c3bd;}
-
-      .font-style {
-        font-family: "Noto Sans KR", serif;}
-    </style>
 </head>
 <body>
+    {% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/earlyaccess/notosanskr.css">
 
-    <div id="navbar">
-        <h1>Visitor List</h1>
-        <form class="form-inline my-2 my-lg-0">
-            {% if user.is_authenticated %}
-    <!--        <a href="/visitor/add/" class="btn btn-primary">방문자 등록</a>-->
-            <button type="submit" class="new-btn new-primary font-style">
-            <a href="/visitor/add/">등록</a></button>
-
-            <button type="submit" class="new-btn new-primary font-style">
-            <a href="/posts/feeds/">LogOut</a></button>
-
-            {% else %}
-            <button type="submit" class="new-btn new-primary font-style">
-            <a href="/membership/login/">LogIn</a></button>
-
-            <button type="submit" class="new-btn new-primary font-style">
-            <a href="/membership/signup/">SignUp</a></button>
-            {% endif %}
-        </form>
-    </div>
-    <br>
-    <div id="post-detail" style="margin-top: 10px;">
-<!--        <h2><a href="/visitor/main/">Parking Site</a></h2>-->
-        <div>
+    <div class="container" style="margin-top: 100px;">
+        <div class="float-right">
             <form method="GET" action="/visitor/search/">
                 <input type="text" name="keyword">
-                <button class="btn btn-primary">검색</button>
+                <button class="new-btn new-primary font-style">검색</button>
             </form>
         </div>
-        <br>
-        <div>
-            <table>
+
+        <table class="table table-hover text-center" style="border: 1px solid;">
             {% if visitors %}
                 <thead>
                     <th>순서</th>
@@ -76,15 +34,15 @@
                     <td>
                         <a href="/visitor/{{ visitor.id }}/">{{ visitor.id }}{{ visitor.carNumber }}</a>
                     </td>
-                    <td>in</td>
-                    <td>out</td>
+                    <td>{{ visitor.id }}{{ visitor.carNumber}}{{ visitor.carIn }}</td>
+                    <td>{{ visitor.id }}{{ visitor.carNumber}}{{ visitor.carIn }}{{ visitor.exit.last.visitor_exit }}</td>
                 </tbody>
                 {% endfor %}
             {% else %}
                 <p>방문자가 없습니다.</p>
             {% endif %}
-            </table>
-        </div>
+        </table>
     </div>
+    {% endblock %}
 </body>
 </html>

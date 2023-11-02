@@ -16,11 +16,19 @@
             <li>
                 id: {{ id }}
             </li>
-            {% for exit_list in exit %}
+<!--            {% for exit_list in exit %}-->
+<!--            <li>-->
+<!--                출차 일시 : {{ exit_list.visitor_exit }}-->
+<!--            </li>-->
+<!--            {% endfor %}-->
+            {% if exit %}
             <li>
-                출차 일시 : {{ exit_list }}
+                출차 일시 : {{ exit.first.visitor_exit }}
             </li>
-            {% endfor %}
+            <li>
+                출차 일시 : {{ exit.last.visitor_exit }}
+            </li>
+            {% endif %}
         </ul>
     </div>
 

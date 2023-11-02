@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -18,6 +20,7 @@ class Exit(models.Model):
     id = models.BigAutoField(help_text="Exit ID", primary_key=True)
     visitor_id = models.IntegerField()
     visitor_exit = models.DateTimeField(auto_now_add=True)
+
 
 
 # class Exit(models.Model):

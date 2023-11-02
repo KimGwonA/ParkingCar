@@ -96,5 +96,4 @@ def visitor_exit(request, id):
         # "exit": vExitTime,
         "exit": Exit.objects.filter(visitor_id=id),
     }
-    # print(context)
     return render(request, "visitor_exit.html", context)

@@ -46,3 +46,9 @@ def signup(request):
 
     context = {"form": form}
     return render(request, "membership/signup.html", context)
+
+def delete(request):
+    return render(request, "membership/delete.html")
+
+def my_page(request):
+    return render(request, "membership/my_page.html")

@@ -34,14 +34,16 @@
                     <td>
                         <a href="/visitor/{{ visitor.id }}/">{{ visitor.id }}{{ visitor.carNumber }}</a>
                     </td>
-                    <td>{{ visitor.id }}{{ visitor.carNumber}}{{ visitor.carIn }}</td>
-                    <td>{{ visitor.id }}{{ visitor.carNumber}}{{ visitor.carIn }}{{ visitor.exit.last.visitor_exit }}</td>
+                    <td>{{ visitor.carIn }}</td>
+                    <td>{{ visitor.exit_time }}</td>
                 </tbody>
                 {% endfor %}
             {% else %}
                 <p>방문자가 없습니다.</p>
             {% endif %}
         </table>
+        <button type="button" class="new-btn new-primary font-style float-right">
+            <a href="/visitor/add/">등록</a></button>
     </div>
     {% endblock %}
 </body>

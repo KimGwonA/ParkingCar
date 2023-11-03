@@ -96,4 +96,15 @@ def visitor_exit(request, id):
         # "exit": vExitTime,
         "exit": Exit.objects.filter(visitor_id=id),
     }
+
+    # vExit = Visitor.objects.get(id=id)
+    #
+    # if request.method == "POST":
+    #     vExit.exit_time = timezone.now()  # 현재 시간으로 출차 시간 설정
+    #     vExit.save()
+    #     return redirect('your_redirect_view_name')  # 출차 후 리다이렉트할 뷰 이름으로 변경하세요
+    #
+    # context = {
+    #     "visitor": vExit,
+    # }
     return render(request, "visitor_exit.html", context)

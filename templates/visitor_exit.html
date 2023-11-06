@@ -16,19 +16,17 @@
             <li>
                 id: {{ id }}
             </li>
-<!--            {% for exit_list in exit %}-->
-<!--            <li>-->
-<!--                출차 일시 : {{ exit_list.visitor_exit }}-->
-<!--            </li>-->
-<!--            {% endfor %}-->
-            {% if exit %}
             <li>
-                출차 일시 : {{ exit.first.visitor_exit }}
+                입차 일시 : {{ carIn }}
             </li>
+            {% if exit %}
             <li>
                 출차 일시 : {{ exit.last.visitor_exit }}
             </li>
             {% endif %}
+            <li>
+                요금 : {{ fee }}
+            </li>
         </ul>
     </div>
 

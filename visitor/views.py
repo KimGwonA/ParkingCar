@@ -1,3 +1,6 @@
+# from datetime import datetime
+from datetime import timedelta
+
 from django.shortcuts import render, redirect, get_object_or_404
 from visitor.models import Visitor, Exit
 from django.utils import timezone
@@ -80,31 +83,49 @@ def visitor_exit(request, id):
 
     vCarNumber = vExit.carNumber
     vExitTime = timezone.now()
+    vCarIn = vExit.carIn
+
+    fee = fee_settlement(vCarIn, vExitTime)
 
     Exit.objects.create(
         visitor_id=id,
         visitor_exit=vExitTime,
     )
 
-    # if request.method == "GET":
-    #     exit_visitor = request.GET(visitor=vExit)
-    #     exit_visitor.save()
-
     context = {
         "carNumber": vCarNumber,
         "id": id,
         # "exit": vExitTime,
+        "carIn": vCarIn,
         "exit": Exit.objects.filter(visitor_id=id),
+        "fee": fee,
     }
 
-    # vExit = Visitor.objects.get(id=id)
-    #
-    # if request.method == "POST":
-    #     vExit.exit_time = timezone.now()  # 현재 시간으로 출차 시간 설정
-    #     vExit.save()
-    #     return redirect('your_redirect_view_name')  # 출차 후 리다이렉트할 뷰 이름으로 변경하세요
-    #
-    # context = {
-    #     "visitor": vExit,
-    # }
     return render(request, "visitor_exit.html", context)
+
+def fee_settlement(carIn, carExit):
+    defult_fee = 10000
+    defult_time = timedelta(minutes=30)
+    ten_minutes = timedelta(minutes=10)
+    ten_fee = 1500
+    two_day = timedelta(days=2)
+
+    if carExit:
+        fee_time = carExit - carIn
+        if fee_time == defult_time:
+            fee = defult_fee
+            return fee
+        elif fee_time > defult_time:
+            fee = ((fee_time - defult_time) / ten_minutes) * ten_fee + defult_fee
+            if 20000 <= fee < 30000:
+                fee = fee * 0.9
+                return fee
+            elif fee >= 30000:
+                fee = 30000
+            return fee
+        else:
+            return "Free"
+
+    else:
+        return "None"
+
